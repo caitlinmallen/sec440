@@ -1,0 +1,21 @@
+- name: SEC-440 Project 1 Firewall Configuration Playbook
+  ansible_connection: ansible.netcommon.network_cli
+  hosts: firewalls
+  tasks:
+    - name: Network segments
+      vyos_config:
+        backup: yes
+        save: yes
+        lines:
+            - set firewall name WAN-to-LAN default-action drop
+            - set firewall name WAN-to-LAN enable-default-log
+            - set firewall name LAN-to-WAN default-action drop
+            - set firewall name LAN-to-WAN enable-default-log
+            - set firewall name WAN-to-OPT default-action drop
+            - set firewall name WAN-to-OPT enable-default-log
+            - set firewall name OPT-to-WAN default-action drop
+            - set firewall name OPT-to-WAN enable-default-log
+            - set firewall name OPT-to-LAN default-action drop
+            - set firewall name OPT-to-LAN enable-default-log
+            - set firewall name LAN-to-OPT default-action drop
+            - set firewall name LAN-to-OPT enable-default-log
