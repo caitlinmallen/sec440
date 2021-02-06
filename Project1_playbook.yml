@@ -1,27 +1,26 @@
 - name: SEC-440 Project 1 Firewall Configuration Playbook
-  ansible_connection: ansible.netcommon.network_cli
   hosts: firewalls
   tasks:
     - name: Network segments
       vyos.vyos.vyos_config:
-        backup: yes
-        save: yes
-        lines:
-            - set firewall name OPT-to-WAN default-action drop
-            - set firewall name OPT-to-WAN enable-default-log
-            - set firewall name OPT-to-LAN default-action drop
-            - set firewall name OPT-to-LAN enable-default-log
-            - set firewall name LAN-to-OPT default-action drop
-            - set firewall name LAN-to-OPT enable-default-log
-            - set firewall name WAN-to-LAN default-action drop
-            - set firewall name WAN-to-LAN enable-default-log
-            - set firewall name LAN-to-WAN default-action drop
-            - set firewall name LAN-to-WAN enable-default-log
-            - set firewall name WAN-to-OPT default-action drop
-            - set firewall name WAN-to-OPT enable-default-log
+       backup: yes
+       save: yes
+       lines:
+          - set firewall name OPT-to-WAN default-action drop
+          - set firewall name OPT-to-WAN enable-default-log
+          - set firewall name OPT-to-LAN default-action drop
+          - set firewall name OPT-to-LAN enable-default-log
+          - set firewall name LAN-to-OPT default-action drop
+          - set firewall name LAN-to-OPT enable-default-log
+          - set firewall name WAN-to-LAN default-action drop
+          - set firewall name WAN-to-LAN enable-default-log
+          - set firewall name LAN-to-WAN default-action drop
+          - set firewall name LAN-to-WAN enable-default-log
+          - set firewall name WAN-to-OPT default-action drop
+          - set firewall name WAN-to-OPT enable-default-log
 
-    - name: Zone policies
-      vyos.vyos.vyos_config:
+     - name: Zone policies
+       vyos.vyos.vyos_config:
         backup: yes
         save: yes
         lines:
@@ -31,30 +30,30 @@
           - set zone-policy zone WAN from OPT firewall name OPT-to-WAN
           - set zone-policy zone LAN from OPT firewall name OPT-to-LAN
           - set zone-policy zone OPT from LAN firewall name LAN-to-OPT
-    - name: Firewall rules
-      vyos.vyos.vyos_config:
+
+     - name: Firewall rules
+       vyos.vyos.vyos_config:
         backup: yes
         save: yes
         lines:
-         - set firewall name LAN-to-WAN rule 10 action accept
-         - set firewall name LAN-to-WAN rule 10 description "Allow Internet connection from LAN to WAN"
-         - set firewall name WAN-to-LAN rule 20 action accept
-         - set firewall name WAN-to-LAN rule 20 description "Allow already established connections into LAN"
-         - set firewall name WAN-to-LAN rule 20 state established enable
-         - set firewall name WAN-to-LAN rule 30 action accept
-         - set firewall name WAN-to-LAN rule 30 description "SSH for web01"
-         - set firewall name WAN-to-LAN rule 30 destination address 10.0.5.100
-         - set firewall name WAN-to-LAN rule 30 protocol tcp
-         - set firewall name WAN-to-LAN rule 30 destination port 22
-         - set firewall name WAN-to-LAN rule 40 action accept
-         - set firewall name WAN-to-LAN rule 40 description "HTTP web01"
-         - set firewall name WAN-to-LAN rule 40 destination address 10.0.5.100
-         - set firewall name WAN-to-LAN rule 40 protocol tcp
-         - set firewall name WAN-to-LAN rule 40 destination port 80
+          - set firewall name LAN-to-WAN rule 10 action accept
+          - set firewall name LAN-to-WAN rule 10 description "Allow Internet connection from LAN to WAN"
+          - set firewall name WAN-to-LAN rule 20 action accept
+          - set firewall name WAN-to-LAN rule 20 description "Allow already established connections into LAN"
+          - set firewall name WAN-to-LAN rule 20 state established enable
+          - set firewall name WAN-to-LAN rule 30 action accept
+          - set firewall name WAN-to-LAN rule 30 description "SSH for web01"
+          - set firewall name WAN-to-LAN rule 30 destination address 10.0.5.100
+          - set firewall name WAN-to-LAN rule 30 protocol tcp
+          - set firewall name WAN-to-LAN rule 30 destination port 22
+          - set firewall name WAN-to-LAN rule 40 action accept
+          - set firewall name WAN-to-LAN rule 40 description "HTTP web01"
+          - set firewall name WAN-to-LAN rule 40 destination address 10.0.5.100
+          - set firewall name WAN-to-LAN rule 40 protocol tcp
+          - set firewall name WAN-to-LAN rule 40 destination port 80
 
-
-    - name: NAT
-      vyos.vyos.vyos_config:
+     - name: NAT
+       vyos.vyos.vyos_config:
         backup: yes
         save: yes
         lines:
@@ -75,8 +74,8 @@
           - set nat source rule 10 source address 10.0.5.0/24
           - set nat source rule 10 translation address masquerade
 
-    - name: HA
-      vyos.vyos.vyos_config:
+     - name: HA
+       vyos.vyos.vyos_config:
         backup: yes
         save: yes
         lines:
