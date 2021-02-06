@@ -21,7 +21,7 @@
             - set firewall name WAN-to-OPT enable-default-log
 
     - name: Zone policies
-    vyos.vyos.vyos_config:
+      vyos.vyos.vyos_config:
         backup: yes
         save: yes
         lines:
@@ -32,7 +32,7 @@
           - set zone-policy zone LAN from OPT firewall name OPT-to-LAN
           - set zone-policy zone OPT from LAN firewall name LAN-to-OPT
     - name: Firewall rules
-    vyos.vyos.vyos_config:
+      vyos.vyos.vyos_config:
         backup: yes
         save: yes
         lines:
@@ -53,7 +53,7 @@
          - set firewall name WAN-to-LAN rule 40 destination port 80
 
 
-         - name: NAT
+    - name: NAT
       vyos.vyos.vyos_config:
         backup: yes
         save: yes
