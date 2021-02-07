@@ -1,7 +1,7 @@
 - name: SEC-440 Project 1 Firewall Configuration Playbook
   hosts: firewalls
   tasks:
-   - name: Network segments
+    - name: Network segments
      vyos.vyos.vyos_config:
       backup: yes
       save: yes
