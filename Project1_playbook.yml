@@ -52,11 +52,11 @@
         - set firewall name WAN-to-LAN rule 40 protocol tcp
         - set firewall name WAN-to-LAN rule 40 destination port 80
 
-   - name: NAT
-     vyos.vyos.vyos_config:
-       backup: yes
-       save: yes
-       lines:
+  - name: NAT
+    vyos.vyos.vyos_config:
+      backup: yes
+      save: yes
+      lines:
         - set nat destination rule 10 description "WAN to web01 HTTP"
         - set nat destination rule 10 inbound-interface eth0
         - set nat destination rule 10 source address 10.0.17.76/24
