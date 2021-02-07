@@ -1,15 +1,12 @@
-- name: SEC-440 Project 1 Firewall Configuration Playbook
+- name: Firewall Configuration SEC-440
+  connection: network_cli
   hosts: firewalls
   tasks:
-<<<<<<< HEAD
-   - name: Network segments
-=======
-    - name: Network segments
->>>>>>> 642091efc311bed4518d8668b4e3035ed690188f
-     vyos.vyos.vyos_config:
-      backup: yes
-      save: yes
-      lines:
+    - name: Set firewalls
+      vyos_config:
+        backup: yes
+        save: yes
+        lines:
         - set firewall name OPT-to-WAN default-action drop
         - set firewall name OPT-to-WAN enable-default-log
         - set firewall name OPT-to-LAN default-action drop
@@ -23,11 +20,11 @@
         - set firewall name WAN-to-OPT default-action drop
         - set firewall name WAN-to-OPT enable-default-log
 
-  - name: Zone policies
-    vyos.vyos.vyos_config:
-      backup: yes
-      save: yes
-      lines:
+    - name: Zones policies
+      vyos_config:
+        backup: yes
+        save: yes
+        lines:
         - set zone-policy zone LAN from WAN firewall name WAN-to-LAN
         - set zone-policy zone WAN from LAN firewall name LAN-to-WAN
         - set zone-policy zone OPT from WAN firewall name WAN-to-OPT
@@ -35,11 +32,11 @@
         - set zone-policy zone LAN from OPT firewall name OPT-to-LAN
         - set zone-policy zone OPT from LAN firewall name LAN-to-OPT
 
-  - name: Firewall rules
-    vyos.vyos.vyos_config:
-      backup: yes
-      save: yes
-      lines:
+    - name: Firewall rules
+      vyos_config:
+        backup: yes
+        save: yes
+        lines:
         - set firewall name LAN-to-WAN rule 10 action accept
         - set firewall name LAN-to-WAN rule 10 description "Allow Internet connection from LAN to WAN"
         - set firewall name WAN-to-LAN rule 20 action accept
@@ -56,20 +53,20 @@
         - set firewall name WAN-to-LAN rule 40 protocol tcp
         - set firewall name WAN-to-LAN rule 40 destination port 80
 
-  - name: NAT
-    vyos.vyos.vyos_config:
-      backup: yes
-      save: yes
-      lines:
+    - name: NAT
+      vyos_config:
+        backup: yes
+        save: yes
+        lines:
         - set nat destination rule 10 description "WAN to web01 HTTP"
         - set nat destination rule 10 inbound-interface eth0
-        - set nat destination rule 10 source address 10.0.17.76/24
+        - set nat destination rule 10 source address 10.0.17.0/24
         - set nat destination rule 10 protocol tcp
         - set nat destination rule 10 destination port 80
         - set nat destination rule 10 translation address 10.0.5.100
         - set nat destination rule 20 description "WAN to web01 SSH"
         - set nat destination rule 20 inbound-interface eth0
-        - set nat destination rule 20 source address 10.0.17.76/24
+        - set nat destination rule 20 source address 10.0.17.0/24
         - set nat destination rule 20 protocol tcp
         - set nat destination rule 20 destination port 22
         - set nat destination rule 20 translation address 10.0.5.100
@@ -78,11 +75,11 @@
         - set nat source rule 10 source address 10.0.5.0/24
         - set nat source rule 10 translation address masquerade
 
-  - name: HA
-    vyos.vyos.vyos_config:
-      backup: yes
-      save: yes
-      lines:
+    - name: HA
+      vyos_config:
+        backup: yes
+        save: yes
+        lines:
         - set high-availability vrrp group LAN vrid 10
         - set high-availability vrrp group LAN interface eth1
         - set high-availability vrrp group LAN virtual-address 10.0.5.1/24
