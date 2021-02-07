@@ -1,0 +1,420 @@
+firewall {
+    all-ping enable
+    broadcast-ping disable
+    config-trap disable
+    ipv6-receive-redirects disable
+    ipv6-src-route disable
+    ip-src-route disable
+    log-martians enable
+    name LAN-to-OPT {
+        default-action drop
+        enable-default-log
+    }
+    name LAN-to-WAN {
+        default-action drop
+        enable-default-log
+        rule 10 {
+firewall {
+    all-ping enable
+    broadcast-ping disable
+    config-trap disable
+    ipv6-receive-redirects disable
+    ipv6-src-route disable
+    ip-src-route disable
+    log-martians enable
+    name LAN-to-OPT {
+        default-action drop
+        enable-default-log
+    }
+    name LAN-to-WAN {
+        default-action drop
+        enable-default-log
+        rule 10 {
+            action accept
+            description "Allow Internet connection from LAN to WAN"
+        }
+    }
+    name OPT-to-LAN {
+        default-action drop
+        enable-default-log
+    }
+    name OPT-to-WAN {
+        default-action drop
+        enable-default-log
+    }
+    name WAN-to-LAN {
+        default-action drop
+        enable-default-log
+        rule 20 {
+            action accept
+            description "Allow already established connections into LAN"
+            state {
+                established enable
+            }
+        }
+        rule 30 {
+            action accept
+            description "SSH for web01"
+            destination {
+                address 10.0.5.100
+                port 22
+            }
+            protocol tcp
+        }
+        rule 40 {
+            action accept
+            description "HTTP web01"
+            destination {
+                address 10.0.5.100
+                port 80
+            }
+            protocol tcp
+        }
+    }
+    name WAN-to-OPT {
+        default-action drop
+        enable-default-log
+    }
+    receive-redirects disable
+    send-redirects enable
+    source-validation disable
+    syn-cookies enable
+    twa-hazards-protection disable
+}
+high-availability {
+    vrrp {
+        group LAN {
+            interface eth1
+            virtual-address 10.0.5.1/24
+            vrid 10
+        }
+        group OPT {
+            interface eth2
+            virtual-address 10.0.6.1/24
+            vrid 20
+        }
+        group wangroup6 {
+            interface eth0
+            virtual-address 10.0.17.76/24
+            vrid 156
+        }
+    }
+}
+interfaces {
+    ethernet eth0 {
+        address 10.0.17.56/24
+        description "SEC-440 WAN"
+        hw-id 00:50:56:b3:14:05
+    }
+    ethernet eth1 {
+        address 10.0.5.3/24
+        description "SEC-440 LAN"
+        hw-id 00:50:56:b3:2f:d0
+    }
+    ethernet eth2 {
+        address 10.0.6.2/24
+        description "SEC-440 OPT"
+        hw-id 00:50:56:b3:47:a7
+firewall {
+    all-ping enable
+    broadcast-ping disable
+    config-trap disable
+    ipv6-receive-redirects disable
+    ipv6-src-route disable
+    ip-src-route disable
+    log-martians enable
+    name LAN-to-OPT {
+        default-action drop
+        enable-default-log
+    }
+    name LAN-to-WAN {
+        default-action drop
+        enable-default-log
+        rule 10 {
+            action accept
+            description "Allow Internet connection from LAN to WAN"
+        }
+    }
+    name OPT-to-LAN {
+        default-action drop
+        enable-default-log
+    }
+    name OPT-to-WAN {
+        default-action drop
+        enable-default-log
+    }
+    name WAN-to-LAN {
+        default-action drop
+        enable-default-log
+        rule 20 {
+            action accept
+            description "Allow already established connections into LAN"
+            state {
+                established enable
+            }
+        }
+        rule 30 {
+            action accept
+            description "SSH for web01"
+            destination {
+                address 10.0.5.100
+                port 22
+            }
+            protocol tcp
+        }
+        rule 40 {
+            action accept
+            description "HTTP web01"
+            destination {
+                address 10.0.5.100
+                port 80
+:
+    ip-src-route disable
+    log-martians enable
+    name LAN-to-OPT {
+        default-action drop
+        enable-default-log
+    }
+    name LAN-to-WAN {
+        default-action drop
+        enable-default-log
+        rule 10 {
+            action accept
+            description "Allow Internet connection from LAN to WAN"
+        }
+    }
+    name OPT-to-LAN {
+        default-action drop
+        enable-default-log
+    }
+    name OPT-to-WAN {
+        default-action drop
+        enable-default-log
+    }
+    name WAN-to-LAN {
+        default-action drop
+        enable-default-log
+        rule 20 {
+            action accept
+            description "Allow already established connections into LAN"
+            state {
+                established enable
+            }
+        }
+        rule 30 {
+            action accept
+            description "SSH for web01"
+            destination {
+                address 10.0.5.100
+                port 22
+            }
+            protocol tcp
+        }
+        rule 40 {
+            action accept
+            description "HTTP web01"
+            destination {
+                address 10.0.5.100
+                port 80
+            }
+            protocol tcp
+        }
+    }
+    name WAN-to-OPT {
+        default-action drop
+        enable-default-log
+    }
+    receive-redirects disable
+    send-redirects enable
+    source-validation disable
+    syn-cookies enable
+    twa-hazards-protection disable
+}
+high-availability {
+    vrrp {
+        group LAN {
+            interface eth1
+            virtual-address 10.0.5.1/24
+            vrid 10
+        }
+        group OPT {
+            interface eth2
+            virtual-address 10.0.6.1/24
+            vrid 20
+        }
+        group wangroup6 {
+            interface eth0
+            virtual-address 10.0.17.76/24
+            vrid 156
+        }
+    }
+}
+interfaces {
+    ethernet eth0 {
+        address 10.0.17.56/24
+        description "SEC-440 WAN"
+        hw-id 00:50:56:b3:14:05
+    }
+    ethernet eth1 {
+        address 10.0.5.3/24
+        description "SEC-440 LAN"
+        hw-id 00:50:56:b3:2f:d0
+    }
+    ethernet eth2 {
+        address 10.0.6.2/24
+        description "SEC-440 OPT"
+        hw-id 00:50:56:b3:47:a7
+    }
+    loopback lo {
+    }
+}
+nat {
+    destination {
+        rule 10 {
+            description "WAN to web01 HTTP"
+            destination {
+                port 80
+            }
+            inbound-interface eth0
+            protocol tcp
+            source {
+                address 10.0.17.0/24
+            }
+            translation {
+                address 10.0.5.100
+            }
+        }
+        rule 20 {
+            description "WAN to web01 SSH"
+            destination {
+                port 22
+            }
+            inbound-interface eth0
+            protocol tcp
+            source {
+                address 10.0.17.0/24
+            }
+            translation {
+                address 10.0.5.100
+            }
+        }
+    }
+    source {
+        rule 10 {
+            description "LAN masquerade"
+            outbound-interface eth0
+            source {
+                address 10.0.5.0/24
+            }
+            translation {
+                address masquerade
+            }
+        }
+    }
+}
+protocols {
+    static {
+        route 0.0.0.0/0 {
+            next-hop 10.0.17.2 {
+            }
+        }
+    }
+}
+service {
+    dns {
+        forwarding {
+            allow-from 10.0.5.0/24
+            allow-from 10.0.6.0/24
+            listen-address 10.0.5.1
+            listen-address 10.0.6.1
+            name-server 10.0.17.2
+        }
+    }
+    ssh {
+        disable-host-validation
+        listen-address 0.0.0.0
+        port 22
+    }
+}
+system {
+    config-management {
+        commit-revisions 100
+    }
+    console {
+        device ttyS0 {
+            speed 115200
+        }
+    }
+    host-name vyos
+    login {
+        user vyos {
+            authentication {
+                encrypted-password ****************
+                plaintext-password ****************
+            }
+        }
+    }
+    name-server 10.0.17.2
+    ntp {
+        server 0.pool.ntp.org {
+        }
+        server 1.pool.ntp.org {
+        }
+        server 2.pool.ntp.org {
+        }
+    }
+    syslog {
+        global {
+            facility all {
+                level info
+            }
+            facility protocols {
+                level debug
+            }
+        }
+    }
+}
+zone-policy {
+    zone LAN {
+        default-action drop
+        from OPT {
+            firewall {
+                name OPT-to-LAN
+            }
+        }
+        from WAN {
+            firewall {
+                name WAN-to-LAN
+            }
+        }
+        interface eth1
+    }
+    zone OPT {
+        default-action drop
+        from LAN {
+            firewall {
+                name LAN-to-OPT
+            }
+        }
+        from WAN {
+            firewall {
+                name WAN-to-OPT
+            }
+        }
+        interface eth2
+    }
+    zone WAN {
+        default-action drop
+        from LAN {
+            firewall {
+                name LAN-to-WAN
+            }
+        }
+        from OPT {
+            firewall {
+                name OPT-to-WAN
+            }
+        }
+        interface eth0
+    }
+}

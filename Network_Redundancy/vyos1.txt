@@ -1,0 +1,303 @@
+firewall {
+    name LAN-to-OPT {
+        default-action drop
+        enable-default-log
+    }
+    name LAN-to-WAN {
+        default-action drop
+        enable-default-log
+        rule 10 {
+            action accept
+            description "Allow Internet connection from LAN to WAN"
+        }
+    }
+    name OPT-to-LAN {
+        default-action drop
+        enable-default-log
+    }
+    name OPT-to-WAN {
+        default-action drop
+        enable-default-log
+    }
+    name WAN-to-LAN {
+        default-action drop
+:...skipping...
+firewall {
+    name LAN-to-OPT {
+        default-action drop
+        enable-default-log
+    }
+    name LAN-to-WAN {
+        default-action drop
+        enable-default-log
+        rule 10 {
+            action accept
+            description "Allow Internet connection from LAN to WAN"
+        }
+    }
+    name OPT-to-LAN {
+        default-action drop
+        enable-default-log
+    }
+    name OPT-to-WAN {
+        default-action drop
+        enable-default-log
+    }
+    name WAN-to-LAN {
+        default-action drop
+        enable-default-log
+        rule 20 {
+:...skipping...
+firewall {
+    name LAN-to-OPT {
+        default-action drop
+        enable-default-log
+    }
+    name LAN-to-WAN {
+        default-action drop
+        enable-default-log
+        rule 10 {
+            action accept
+            description "Allow Internet connection from LAN to WAN"
+        }
+    }
+    name OPT-to-LAN {
+        default-action drop
+        enable-default-log
+    }
+    name OPT-to-WAN {
+        default-action drop
+        enable-default-log
+    }
+    name WAN-to-LAN {
+        default-action drop
+        enable-default-log
+        rule 20 {
+            action accept
+            description "Allow already established connections into LAN"
+            state {
+                established enable
+            }
+        }
+:...skipping...
+firewall {
+    name LAN-to-OPT {
+        default-action drop
+        enable-default-log
+    }
+    name LAN-to-WAN {
+        default-action drop
+        enable-default-log
+        rule 10 {
+            action accept
+            description "Allow Internet connection from LAN to WAN"
+        }
+    }
+    name OPT-to-LAN {
+        default-action drop
+        enable-default-log
+    }
+    name OPT-to-WAN {
+        default-action drop
+        enable-default-log
+    }
+    name WAN-to-LAN {
+        default-action drop
+        enable-default-log
+        rule 20 {
+            action accept
+            description "Allow already established connections into LAN"
+            state {
+                established enable
+            }
+        }
+        rule 30 {
+            action accept
+            description "SSH for web01"
+            destination {
+                address 10.0.5.100
+                port 22
+:...skipping...
+firewall {
+    name LAN-to-OPT {
+        default-action drop
+        enable-default-log
+    }
+    name LAN-to-WAN {
+        default-action drop
+        enable-default-log
+        rule 10 {
+            action accept
+            description "Allow Internet connection from LAN to WAN"
+        }
+    }
+    name OPT-to-LAN {
+        default-action drop
+        enable-default-log
+    }
+    name OPT-to-WAN {
+        default-action drop
+        enable-default-log
+    }
+    name WAN-to-LAN {
+        default-action drop
+        enable-default-log
+        rule 20 {
+            action accept
+            description "Allow already established connections into LAN"
+            state {
+                established enable
+            }
+        }
+        rule 30 {
+            action accept
+            description "SSH for web01"
+            destination {
+                address 10.0.5.100
+                port 22
+            }
+            protocol tcp
+        }
+        rule 40 {
+            action accept
+:...skipping...
+firewall {
+    name LAN-to-OPT {
+        default-action drop
+        enable-default-log
+    }
+    name LAN-to-WAN {
+        default-action drop
+        enable-default-log
+        rule 10 {
+            action accept
+            description "Allow Internet connection from LAN to WAN"
+        }
+    }
+    name OPT-to-LAN {
+        default-action drop
+        enable-default-log
+    }
+    name OPT-to-WAN {
+        default-action drop
+        enable-default-log
+    }
+    name WAN-to-LAN {
+        default-action drop
+        enable-default-log
+        rule 20 {
+            action accept
+            description "Allow already established connections into LAN"
+            state {
+                established enable
+            }
+        }
+        rule 30 {
+            action accept
+            description "SSH for web01"
+            destination {
+                address 10.0.5.100
+                port 22
+            }
+            protocol tcp
+        }
+        rule 40 {
+            action accept
+            description "HTTP web01"
+            destination {
+:...skipping...
+firewall {
+    name LAN-to-OPT {
+        default-action drop
+        enable-default-log
+    }
+    name LAN-to-WAN {
+        default-action drop
+        enable-default-log
+        rule 10 {
+            action accept
+            description "Allow Internet connection from LAN to WAN"
+        }
+    }
+    name OPT-to-LAN {
+        default-action drop
+        enable-default-log
+    }
+    name OPT-to-WAN {
+        default-action drop
+        enable-default-log
+    }
+    name WAN-to-LAN {
+        default-action drop
+        enable-default-log
+        rule 20 {
+            action accept
+            description "Allow already established connections into LAN"
+            state {
+                established enable
+            }
+        }
+        rule 30 {
+            action accept
+            description "SSH for web01"
+            destination {
+                address 10.0.5.100
+                port 22
+            }
+            protocol tcp
+        }
+        rule 40 {
+            action accept
+            description "HTTP web01"
+            destination {
+                address 10.0.5.100
+:...skipping...
+firewall {
+    name LAN-to-OPT {
+        default-action drop
+        enable-default-log
+    }
+    name LAN-to-WAN {
+        default-action drop
+        enable-default-log
+        rule 10 {
+            action accept
+            description "Allow Internet connection from LAN to WAN"
+        }
+    }
+    name OPT-to-LAN {
+        default-action drop
+        enable-default-log
+    }
+    name OPT-to-WAN {
+        default-action drop
+        enable-default-log
+    }
+    name WAN-to-LAN {
+        default-action drop
+        enable-default-log
+        rule 20 {
+            action accept
+            description "Allow already established connections into LAN"
+            state {
+                established enable
+            }
+        }
+        rule 30 {
+            action accept
+            description "SSH for web01"
+            destination {
+                address 10.0.5.100
+                port 22
+            }
+            protocol tcp
+        }
+        rule 40 {
+            action accept
+            description "HTTP web01"
+            destination {
+                address 10.0.5.100
+                port 80
+            }
+:
+
