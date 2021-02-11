@@ -1,0 +1,46 @@
+On web02
+
+adduser caitlin
+passwd caitlin
+hostname web01-caitlin
+usermod -aG wheel caitlin
+nmtui
+IPv4 CONFIGURATION => Manual
+ADDRESSES => 10.0.5.101/24
+GATEWAY => 10.0.5.1
+DNS SERVERS => 10.0.5.1
+
+systemctl restart network
+yum install -y httpd
+systemctl enable httpd
+systemctl start httpd
+
+vim /var/www/html/index.html
+
+firewall-cmd --add-port=80/tcp --permanent && firewall-cmd --reload
+firewall-cmd --add-port=22/tcp --permanent && firewall-cmd --reload
+sed -i 's/#PermitRootLogin yes/PermitRootLogin no/g' /etc/ssh/sshd_config
+yum -y install epel-release
+yum -y install google-authenticator
+
+in /etc/pam.d/sshd
+ADD THE FOLLOWING
+
+In /etc/ssh/sshd_config
+Uncomment ChallengeResponseAuthentication yes
+Comment ChallengeResponseAuthentication no
+Append to end of file
+Match User caitlin
+    AuthenticationMethods keyboard-interactive
+systemctl restart sshd
+
+
+On web01 and web02
+HA Installation and set-up
+yum install pcs pacemaker fence-agents-all -y
+firewall-cmd --add-service=high-availability --permanent && firewall-cmd --reload
+firewall-cmd --list-all
+passwd hacluster
+systemctl enable pcsd
+systemctl start pcsd
+pcs cluster auth 10.0.5.100 10.0.5.101
