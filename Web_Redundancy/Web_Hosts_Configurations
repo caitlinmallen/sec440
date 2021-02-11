@@ -1,5 +1,6 @@
+adduser caitlin
 passwd caitlin
-hostname web01-caitlin
+hostname web02-caitlin
 usermod -aG wheel caitlin
 nmtui
 IPv4 CONFIGURATION => Manual
@@ -36,7 +37,7 @@ Match User caitlin
 systemctl restart sshd
 
 
-Web01 and web02
+On Web01 and Web02
 yum install pcs pacemaker fence-agents-all -y
 firewall-cmd --add-service=high-availability --permanent && firewall-cmd --reload
 firewall-cmd --list-all
@@ -44,3 +45,12 @@ passwd hacluster
 systemctl enable pcsd
 systemctl start pcsd
 pcs cluster auth 10.0.5.100 10.0.5.101
+
+On Web01
+pcs cluster setup --start --force --name webserver 10.0.5.100 10.0.5.101
+pcs cluster enable --all
+pcs resource create VirtualIP IPaddr2 ip=10.0.5.110 cidr_netmask=24 --group webserverCA
+
+On Web01 and Web02
+pcs property set stonith-enabled=false
+systemctl restart pcsd
