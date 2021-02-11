@@ -1,6 +1,3 @@
-On web02
-
-adduser caitlin
 passwd caitlin
 hostname web01-caitlin
 usermod -aG wheel caitlin
@@ -16,6 +13,10 @@ systemctl enable httpd
 systemctl start httpd
 
 vim /var/www/html/index.html
+<!DOCTYPE html>
+<html>
+<h1><marquee behavior="scroll" direction="right">web02-caitlin</marquee></h1>
+</html>
 
 firewall-cmd --add-port=80/tcp --permanent && firewall-cmd --reload
 firewall-cmd --add-port=22/tcp --permanent && firewall-cmd --reload
@@ -35,8 +36,7 @@ Match User caitlin
 systemctl restart sshd
 
 
-On web01 and web02
-HA Installation and set-up
+Web01 and web02
 yum install pcs pacemaker fence-agents-all -y
 firewall-cmd --add-service=high-availability --permanent && firewall-cmd --reload
 firewall-cmd --list-all
