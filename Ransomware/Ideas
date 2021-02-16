@@ -1,0 +1,30 @@
+MITRE ATT&CK 
+Powershell 
+-	Code signing so only signed scripts can execute
+-	Disable WinRM Service to prevent remote execution
+-	Restrict execution to admin
+Chec for change in execution policy
+Monitor for loading and execution artifacts like System.Management.Automation.dll
+Powershell logging enabled 
+Python
+-	Audit 
+-	Check for Python installations
+-	Deny Python where not required
+-	Prevent Python from installation
+Check systems for python.exe behavior 
+Capture scripts from file system
+
+Utilizing the Antimalware Scan Interface on Windows 10 (AMSI)
+Deobfuscate/Decode Files or Informatiom
+
+Restrict access to known Ips
+Change passwords to be complex
+Use MFA on everything remote
+
+ClamAV and ClamTK on Linux
+Sophos free antivirus on Linux
+Back ups 
+Least privilege 
+IP Filtering
+
+
